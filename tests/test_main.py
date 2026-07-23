@@ -1,3 +1,4 @@
+# ruff: noqa
 """
 Comprehensive pytest tests for the langchainlc project.
 
@@ -16,6 +17,17 @@ from unittest.mock import MagicMock, patch, PropertyMock
 import pytest
 
 
+# LangChain 0.2+ moved messages to langchain_core
+try:
+    from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+except ImportError:
+    from langchain.schema import HumanMessage, AIMessage, SystemMessage
+
+# LangChain 0.2+ moved PromptTemplate to langchain_core
+try:
+    from langchain_core.prompts import PromptTemplate, ChatPromptTemplate
+except ImportError:
+    from langchain.prompts import PromptTemplate, ChatPromptTemplate
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
